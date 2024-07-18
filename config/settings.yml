@@ -1,0 +1,11 @@
+default: &default
+  email_regex: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

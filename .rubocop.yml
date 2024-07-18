@@ -1,31 +1,3 @@
-# .rubocop.yml
-AllCops:
-  NewCops: enable
-  TargetRubyVersion: 3.2
-  Exclude:
-    - 'db/schema.rb'
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Layout/LineLength:
-  Max: 120
-
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
-    - 'test/**/*.rb'
-    - 'features/**/*.rb'
-
 # This is rubocop configuration file for Sun-Asterisk's coding style. Enabling and disabling is configured
 # in separate files. This file adds all other parameters apart from Enabled.
 
@@ -39,6 +11,7 @@ inherit_from:
 
 # Common configuration.
 AllCops:
+  NewCops: enable
   # Include gemspec and Rakefile
   SuggestExtensions: false
   Include:
@@ -310,7 +283,7 @@ Style/LambdaCall:
     - call
     - braces
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 80
   AllowURI: true
   Exclude:
