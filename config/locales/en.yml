@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  notice:
+    product_created: "Product was successfully created."
+    product_updated: "Product was successfully updated."
+    product_destroyed: "Product was successfully destroyed."

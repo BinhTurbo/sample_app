@@ -1,12 +1,5 @@
 # .rubocop.yml
-AllCops:
-  NewCops: enable
-  TargetRubyVersion: 3.2
-  Exclude:
-    - 'db/schema.rb'
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -14,11 +7,6 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
-Layout/LineLength:
-  Max: 120
-
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
 
 Metrics/BlockLength:
   Exclude:
@@ -39,6 +27,8 @@ inherit_from:
 
 # Common configuration.
 AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
   # Include gemspec and Rakefile
   SuggestExtensions: false
   Include:
@@ -47,6 +37,8 @@ AllCops:
     - '**/*.gemspec'
     - 'Gemfile'
   Exclude:
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
     - 'vendor/**/*'
     - 'config/unicorn.rb'
     - 'bin/*'
@@ -310,8 +302,8 @@ Style/LambdaCall:
     - call
     - braces
 
-Metrics/LineLength:
-  Max: 80
+Layout/LineLength:
+  Max: 120
   AllowURI: true
   Exclude:
     - config/routes.rb
