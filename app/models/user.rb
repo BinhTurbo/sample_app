@@ -32,19 +32,23 @@ class User < ApplicationRecord
   #   self.email = email.downcase!
   # end
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   before_save :downcase_email
 
   validates :name, presence: true, length: {maximum: 50}
-  validates :email, presence: true, length: {maximum: 255}, format: {with: VALID_EMAIL_REGEX}, uniqueness: true
+  validates :email,
+            presence: true,
+            length: {maximum: 255},
+            format: {with: Settings.email_regex},
+            uniqueness: true
 
   has_secure_password
 
   private
 
   def downcase_email
-    self.email = email.downcase
+    email.downcase
   end
 
   # Returns the hash digest of the given string.
