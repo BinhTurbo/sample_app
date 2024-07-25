@@ -35,3 +35,11 @@ en:
     product_created: "Product was successfully created."
     product_updated: "Product was successfully updated."
     product_destroyed: "Product was successfully destroyed."
+  confirmation: "Confirmation"
+  user_created: "User created successfully"
+  user_not_found: "User not found"
+  the_form_contains: "The form contains the following errors:"
+  sign_up: "Sign Up"
+  confirmation: "Confirmation"
+  create_my_account: "Create my account"
+
