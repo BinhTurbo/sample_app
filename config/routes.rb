@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
+
   get "products/index"
   get "products/show"
   get "products/new"
@@ -24,7 +26,9 @@ Rails.application.routes.draw do
   # Định nghĩa root path
   root "static_pages#home" # Hoặc trang nào bạn muốn đặt làm trang chính
 
+
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+
 end

@@ -51,6 +51,7 @@ class User < ApplicationRecord
     email.downcase
   end
 
+
   # Returns the hash digest of the given string.
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
@@ -60,4 +61,5 @@ class User < ApplicationRecord
     end
     BCrypt::Password.create(string, cost: cost)
   end
+
 end
