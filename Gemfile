@@ -85,4 +85,5 @@ gem "rubocop-rails"
 gem "bcrypt", "~> 3.1.7"
 
 gem "byebug"
+
 gem "config"
