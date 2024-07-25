@@ -619,7 +619,9 @@ Layout/EndAlignment:
   Enabled: true
 
 Style/EndBlock:
-  Description: "END blocks should not be placed inside method definitions."
+  Description: >
+    - "END blocks should not be placed inside method definitions."
+    - "Avoid the use of END blocks."
   Enabled: true
 
 Lint/EnsureReturn:

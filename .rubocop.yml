@@ -264,7 +264,6 @@ Style/HashSyntax:
   SupportedStyles:
     - ruby19
     - hash_rockets
-  Enabled: false
 
 # Checks the indentation of the first key in a hash literal.
 Layout/FirstHashElementIndentation:
@@ -316,7 +315,6 @@ Style/MethodDefParentheses:
   SupportedStyles:
     - require_parentheses
     - require_no_parentheses
-  Enabled: false
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
@@ -525,7 +523,6 @@ Layout/EndAlignment:
   # with the start of the variable on the left hand side of `=`. In all other
   # situations, `end` should still be aligned with the keyword.
   EnforcedStyleAlignWith: keyword
-  Enabled: false
 
 Layout/DefEndAlignment:
   # The value `def` means that `end` should be aligned with the def keyword.
@@ -559,12 +556,3 @@ Rails/ScopeArgs:
 Rails/Validation:
   Include:
     - app/models/**/*.rb
-
-Lint/IneffectiveAccessModifier:
-  Enabled: false
-
-Layout/IndentationWidth:
-  Enabled: false
-
-Layout/ElseAlignment:
-  Enabled: false
