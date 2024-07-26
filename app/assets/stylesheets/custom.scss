@@ -79,4 +79,16 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+
+}
+
+/* Ẩn menu dropdown mặc định */
+.dropdown-menu {
+  display: none;
+}
+
+/* Hiển thị menu khi có lớp "active" */
+.dropdown-menu.active {
+  display: block;
+
 }
