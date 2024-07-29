@@ -1,2 +1,7 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<% provide(:title, "All users") %>
+<h1>All users</h1>
+<%== pagy_bootstrap_nav @pagy %>
+<ul class="users">
+  <%= render @users %>
+</ul>
+<%== pagy_bootstrap_nav @pagy %>
