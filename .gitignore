@@ -70,3 +70,5 @@ config/environments/*.local.yml
 
 # Bỏ qua các thay đổi trong file credentials mã hóa
 /config/credentials.yml.enc
+
+/config/application.yml

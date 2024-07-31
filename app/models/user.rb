@@ -1,39 +1,4 @@
 class User < ApplicationRecord
-  # validates :name, presence: true, length: {minimum: 3, maximum: 50}
-
-  # after_update :run_callback_after_update
-
-  # def run_callback_after_update
-  #   Rails.logger.info "Callback after update"
-  # end
-
-  # before_save :downcase_email
-
-  # before_save :test_callback_before_save
-  # around_save :test_callback_around_save
-  # after_save :test_callback_after_save
-
-  # def test_callback_before_save
-  #   Rails.logger.info "Callback before save"
-  # end
-
-  # def test_callback_around_save
-  #   Rails.logger.info "Callback in around save"
-  #   yield # User saved
-  #   Rails.logger.info "Callback out around save"
-  # end
-
-  # def test_callback_after_save
-  #   Rails.logger.info "Callback after save"
-  #   raise "Error in after save"
-  # end
-
-  # def downcase_email
-  #   self.email = email.downcase!
-  # end
-
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
   validates :name, presence: true, length: {maximum: 50}
   validates :email,
             presence: true,
@@ -41,11 +6,22 @@ class User < ApplicationRecord
             format: {with: Settings.email_regex},
             uniqueness: true
 
+  attr_accessor :remember_token, :activation_token
+
   before_save :downcase_email
+  before_create :create_activation_digest
   has_secure_password
-  attr_accessor :remember_token
 
   scope :ordered_by_creation, ->{order(created_at: :asc)}
+  # Activates an account.
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
+
+  # Sends activation email.
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
 
   class << self
     # Returns the hash digest of the given string.
@@ -63,8 +39,12 @@ class User < ApplicationRecord
     end
   end
 
-  def authenticated? remember_token
-    BCrypt::Password.new(remember_digest).is_password? remember_token
+  # Returns true if the given token matches the digest.
+  def authenticated? attribute, token
+    digest = send("#{attribute}_digest")
+    return false unless digest
+
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def remember
@@ -81,5 +61,11 @@ class User < ApplicationRecord
 
   def downcase_email
     email.downcase
+  end
+
+  # Creates and assigns the activation token and digest.
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
 end

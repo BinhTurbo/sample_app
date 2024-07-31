@@ -25,23 +25,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-
-      reset_session
-      log_in @user
-
-      flash[:success] = t("user_created")
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = t "Please check your email to activate your account."
+      redirect_to root_url, status: :see_other
     else
-      respond_to do |format|
-        format.html{render :new, status: :unprocessable_entity}
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            @user,
-            partial: "users/form",
-            locals: {user: @user}
-          )
-        end
-      end
+      render :new
     end
   end
 
