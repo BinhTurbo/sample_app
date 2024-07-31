@@ -87,3 +87,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "byebug"
 
 gem "config"
+
+gem "faker"
+
+gem "pagy"

@@ -45,6 +45,8 @@ class User < ApplicationRecord
   has_secure_password
   attr_accessor :remember_token
 
+  scope :ordered_by_creation, ->{order(created_at: :asc)}
+
   class << self
     # Returns the hash digest of the given string.
     def digest string
