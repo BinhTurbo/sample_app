@@ -91,3 +91,5 @@ gem "config"
 gem "faker"
 
 gem "pagy"
+
+gem "figaro"

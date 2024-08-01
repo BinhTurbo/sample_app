@@ -44,3 +44,14 @@ en:
   create_my_account: "Create my account"
   log_in: "Login"
   please_log_in: "Please log in."
+  user_mailer:
+    account_activation:
+      subject: "Account activation"
+  flash:
+    success:
+      account_activated: "Account activated!"
+    warning:
+      account_not_activated: "Account not activated. Check your email for the activation link."
+    danger:
+      invalid_login: "Invalid email/password combination"
+      invalid_activation_link: "Invalid activation link"
