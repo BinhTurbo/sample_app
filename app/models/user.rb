@@ -6,11 +6,33 @@ class User < ApplicationRecord
             format: {with: Settings.email_regex},
             uniqueness: true
 
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
   before_create :create_activation_digest
   has_secure_password
+
+  def password_reset_expired?
+    expiration_hours = Settings.password_reset_expiration_hours
+    Rails.logger.info "Password reset expiration hours: #{expiration_hours.inspect}"
+    if expiration_hours.nil?
+      Rails.logger.error "password_reset_expiration_hours is nil"
+      return false
+    end
+    reset_sent_at < expiration_hours.hours.ago
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(
+      reset_digest: User.digest(reset_token),
+      reset_sent_at: Time.zone.now
+    )
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
 
   scope :ordered_by_creation, ->{order(created_at: :asc)}
   # Activates an account.
