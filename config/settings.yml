@@ -2,6 +2,7 @@ default: &default
   email_regex: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   gravatar:
     size: 80
+  password_reset_expiration_hours: 2
 
 development:
   <<: *default

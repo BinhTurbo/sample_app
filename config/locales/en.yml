@@ -50,8 +50,17 @@ en:
   flash:
     success:
       account_activated: "Account activated!"
+      password_reset_successful: "Password reset successful!"
     warning:
       account_not_activated: "Account not activated. Check your email for the activation link."
     danger:
       invalid_login: "Invalid email/password combination"
       invalid_activation_link: "Invalid activation link"
+      email_address_not_found: "Email address not found"
+      user_not_found: "User not found!"
+      user_not_activated: "User is not activated!"
+      password_reset_expired: "Password reset has expired."
+    info: "Email sent with password reset instructions"
+  mail:
+    subject:
+      password_reset: "Password reset"
