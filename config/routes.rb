@@ -8,14 +8,6 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
 
-  get "products/index"
-  get "products/show"
-  get "products/new"
-  get "products/edit"
-
-  get "demo_partials/new"
-  get "demo_partials/edit"
-
   get "static_pages/home"
   get "static_pages/help"
 
@@ -37,4 +29,6 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: :edit
   resources :password_resets, only: %i(new create edit update)
+  resources :microposts, only: %i(create destroy)
+  # resources :microposts, except: %i(index new edit show update)
 end

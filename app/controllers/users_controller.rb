@@ -1,19 +1,15 @@
 class UsersController < ApplicationController
-  include Pagy::Backend
   before_action :logged_in_user, except: %i(new create)
   before_action :find_user, except: %i(index new create)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: :destroy
-
   def index
-    @pagy, @users = pagy(User.ordered_by_creation, items: Settings.page_10)
+    @pagy, @users = pagy(User.ordered_by_creation,
+                         items: Settings.default.page_10)
   end
 
   def show
-    return if @user
-
-    flash[:warning] = t("user_not_found")
-    redirect_to root_path
+    @pagy, @microposts = pagy @user.microposts, items: Settings.default.page_10
   end
 
   def new
@@ -35,7 +31,6 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      # Handle a successful update
       flash[:success] = t "Profile updated"
       redirect_to @user
     else
@@ -53,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def admin_user
     redirect_to root_path unless current_user.admin?
   end
@@ -62,12 +58,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
-      :name,
-      :email,
-      :password,
-      :password_confirmation
-    )
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
   end
 
   def find_user
@@ -75,17 +67,6 @@ class UsersController < ApplicationController
     redirect_to root_path unless @user
   end
 
-  # Before filters
-  # Confirms a logged-in user
-  def logged_in_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = t "Please log in."
-    redirect_to login_url
-  end
-
-  # Confirms the correct user
   def correct_user
     return if current_user?(@user)
 

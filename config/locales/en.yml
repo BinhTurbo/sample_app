@@ -51,6 +51,8 @@ en:
     success:
       account_activated: "Account activated!"
       password_reset_successful: "Password reset successful!"
+      micropost_created: "Micropost created!"
+      micropost_deleted: "Micropost deleted"
     warning:
       account_not_activated: "Account not activated. Check your email for the activation link."
     danger:
@@ -60,7 +62,18 @@ en:
       user_not_found: "User not found!"
       user_not_activated: "User is not activated!"
       password_reset_expired: "Password reset has expired."
+      delete_failed: "Delete failed"
+      micropost_invalid: "Micropost invalid"
     info: "Email sent with password reset instructions"
   mail:
     subject:
       password_reset: "Password reset"
+  errors:
+    messages:
+      file_size_exceeded: "Maximum file size is %{size}MB. Please choose a smaller file."
+  activerecord:
+    errors:
+      models:
+        attributes:
+          content: "must be a valid image format"
+          size: "should be less than 5MB"

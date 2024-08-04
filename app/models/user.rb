@@ -10,11 +10,17 @@ class User < ApplicationRecord
 
   before_save :downcase_email
   before_create :create_activation_digest
+  has_many :microposts, dependent: :destroy
   has_secure_password
 
+  def feed
+    microposts
+  end
+
   def password_reset_expired?
-    expiration_hours = Settings.password_reset_expiration_hours
-    Rails.logger.info "Password reset expiration hours: #{expiration_hours.inspect}"
+    expiration_hours = Settings.default.password_reset_expiration_hours
+    message = "Password reset expiration hours: #{expiration_hours.inspect}"
+    Rails.logger.info(message)
     if expiration_hours.nil?
       Rails.logger.error "password_reset_expiration_hours is nil"
       return false

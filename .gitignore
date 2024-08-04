@@ -72,3 +72,6 @@ config/environments/*.local.yml
 /config/credentials.yml.enc
 
 /config/application.yml
+
+# Ignore uploaded test images.
+/storage
