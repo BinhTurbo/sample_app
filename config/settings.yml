@@ -3,6 +3,10 @@ default: &default
   gravatar:
     size: 80
   password_reset_expiration_hours: 2
+  digit_140: 140
+  page_10: 10
+  image:
+    resize_to_limit: [500, 500]
 
 development:
   <<: *default

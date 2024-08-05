@@ -1,0 +1,12 @@
+translations:
+  - file: "public/javascripts/i18n/translations.js"
+    only:
+      - "*.attributes"
+      - "*.errors"
+      - "*.flash"
+      - "*.helpers"
+      - "*.views"
+      - "*.models"
+  - file: "public/javascripts/i18n/tokens.js"
+    only:
+      - "*.tokens"
