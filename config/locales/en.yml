@@ -65,6 +65,12 @@ en:
       delete_failed: "Delete failed"
       micropost_invalid: "Micropost invalid"
     info: "Email sent with password reset instructions"
+    users:
+      not_found: "User not found."
+      error: "An error occurred: %{error_message}"
+    relationships:
+      not_found: "Relationship not found."
+      error: "An error occurred: %{error_message}"
   mail:
     subject:
       password_reset: "Password reset"

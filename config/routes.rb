@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'password_resets/create'
@@ -22,13 +24,16 @@ Rails.application.routes.draw do
   # Định nghĩa root path
   root "static_pages#home" # Hoặc trang nào bạn muốn đặt làm trang chính
 
-
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: :edit
   resources :password_resets, only: %i(new create edit update)
   resources :microposts, only: %i(create destroy)
-  # resources :microposts, except: %i(index new edit show update)
+  resources :relationships, only: %i[create destroy]
 end
