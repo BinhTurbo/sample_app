@@ -19,4 +19,5 @@ length: {maximum: Settings.default.digit_140}
 
   # Named scope for recent posts
   scope :recent_posts, ->{order created_at: :desc}
+  scope :relate_post, ->(user_ids){where user_id: user_ids}
 end
